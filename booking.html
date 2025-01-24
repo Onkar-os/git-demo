@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #d32f2f;
+            margin-bottom: 20px;
+            font-size: 50px;
+            font-family: fantasy;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .bus-container {
+            background-color: #e0f7fa;
+            padding: 15px;
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border: 1px solid #009688;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bus-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .bus-container div {
+            margin-bottom: 10px;
+        }
+        .busname, .bus-no, .info, .time, .price {
+            font-weight: bold;
+            text-align: center;
+            color: #00695c;
+        }
+        .click button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #00796b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .click button:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book a Ticket</h1>
+    <nav class="navbar bg-ternary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand"><h2>travelagency1717</h2></a>
+            <form class="d-flex" role="search" onsubmit="return searchBuses()">
+              <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+    </nav>
+    <div class="container" id="busContainer">
+        <!-- Bus container elements go here -->
+    </div>
+
+    <script>
+        function searchBuses() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            const busContainers = document.querySelectorAll('.bus-container');
+
+            busContainers.forEach(container => {
+                const busName = container.querySelector('.busname').textContent.toLowerCase();
+                if (busName.includes(searchValue)) {
+                    container.style.display = 'flex';
+                } else {
+                    container.style.display = 'none';
+                }
+            });
+
+            return false; // Prevent the form from submitting
+        }
+
+        // Example data for buses
+        const buses = [
+            { name: "Sharma-Travels", number: "MH-26 2304", info: "AC-two tier travels", time: "23:00 to 9:00", price: "Rs 1200/-" },
+            { name: "Prasanna-Travels", number: "MH-26 2004", info: "AC-two tier travels", time: "21:00 to 6:00", price: "Rs 1200/-" },
+            { name: "Prerna-Travels", number: "MH-26 3304", info: "AC-two tier travels", time: "22:10 to 8:00", price: "Rs 1200/-" },
+            { name: "Gokul-Travels", number: "MH-26 2404", info: "AC-two tier travels", time: "21:40 to 7:00", price: "Rs 1200/-" },
+            { name: "Maharashtra Travels", number: "MH-26 2504", info: "AC-two tier travels", time: "22:30 to 6:30", price: "Rs 1200/-" },
+            { name: "SRS Travels", number: "MH-26 2604", info: "Non-AC sleeper", time: "20:00 to 7:00", price: "Rs 900/-" },
+            { name: "VRL Travels", number: "MH-26 2704", info: "AC sleeper", time: "22:00 to 8:00", price: "Rs 1500/-" },
+            { name: "National Travels", number: "MH-26 2804", info: "Non-AC seater", time: "23:00 to 10:00", price: "Rs 700/-" },
+            { name: "Jabbar Travels", number: "MH-26 2904", info: "AC seater", time: "21:00 to 7:00", price: "Rs 1100/-" },
+            { name: "Raj Travels", number: "MH-26 3004", info: "AC sleeper", time: "20:30 to 6:30", price: "Rs 1400/-" }
+        ];
+
+        // Function to display buses
+        function displayBuses() {
+            const busContainer = document.getElementById('busContainer');
+            buses.forEach(bus => {
+                const busDiv = document.createElement('div');
+                busDiv.className = 'bus-container';
+                busDiv.innerHTML = `
+                    <div class="busname">${bus.name}</div>
+                    <div class="bus-no">${bus.number}</div>
+                    <div class="info">${bus.info}</div>
+                    <div class="time">${bus.time}</div>
+                    <div class="price">${bus.price}</div>
+                    <div class="click"><button>click for booking</button></div>
+                `;
+                
+                busContainer.appendChild(busDiv);
+            });
+        }
+
+        // Display buses on page load
+        window.onload = displayBuses;
+    </script>
+</body>
+</html>

@@ -11,7 +11,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color:#333;
+            background-color:black;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -21,9 +21,16 @@
 
          h1 {
             margin: 0;
-            background-color: azure;
+            background-color: black;
+            color: white;
             text-align: center;
+            
         
+        }
+        h1::first-letter {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 120px;
+            color: #ffeb3b;
         }
 
         h3 {
@@ -31,6 +38,7 @@
             color: white;
             margin: 20px 0;
             font-size: 24px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         }
 
         .button-container {
@@ -38,11 +46,15 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
         }
 
         input[type="button"] {
             padding: 10px 20px;
+            display: flex;
             font-size: 16px;
+            font-family: fantasy;
             color: #fff;
             background-color: #007bff;
             border: none;
@@ -59,25 +71,30 @@
             background-color: #003f88;
         }
 
-        /* Image grid styling */
         .image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 300vh));
-            gap: 15px;
-            padding: 20px;
-        }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+}
 
-        .image-grid img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+.image-grid img {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .image-grid img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+.image-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+        .c1{
+            flex-direction: row;
+            display: flex;
         }
     </style>
 </head>
@@ -87,24 +104,43 @@
     
 
     <h3>Explore our services below</h3>
-
+    
     <div class="button-container">
-        <input type="button" name="Home" value="Home" onclick="navigateToPage('home.html')">
-        <input type="button" name="About" value="About" onclick="navigateToPage('about.html')">
-        <input type="button" name="Booking" value="Booking" onclick="navigateToPage('booking.html')">
-        <input type="button" name="Contact" value="Contact" onclick="navigateToPage('contact.html')">
+        <!-- <input type="button" name="Booking" value="Booking" onclick="navigateToPage('booking.html')"> -->
+        <!-- <input type="button" name="user" value="user" onclick="navigateToPage('user.html')"> -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="#" onclick="navigateToPage('booking.html')">Booking</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="navigateToPage('user.html')">User</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact-us</a>
+            </li>
+          </ul>
+
     </div>
 
+<div class="c1" >
     <div class="image-grid">
         <img src="images/bus01.jpg" alt="Bus 1">
         <img src="images/bus02.jpg" alt="Bus 2">
         <img src="images/buso3.jpg" alt="Bus 3">
-        <img src="images/bus04.jpg" alt="Bus 4">
         <img src="images/bus05.jpg" alt="Bus 5">
-
+        <h1>contact us</h1>
+        <div class="contact-details">
+            <p style="color: white; font-family: fantasy;">📍 Address: jijamata colony cidco new Nanded , India</p>
+            <p style="color: white; font-family: fantasy;">📞 Phone: <a href="tel:7620483762">7620483762</a></p>
+            <p style="color: white; font-family: fantasy; ">📧 Email: <a href="travelagency1717@gmail.com">travelagency1717@gmail.com</a></p>
+            <p style="color: white; font-family: fantasy;">🌐 Website: <a href="https://www.travelagency1717.com" target="_blank">www.travelagency1717.com</a></p>
+        </div>
+        
 
     </div>
-
+    
+    
+</div>
     <script>
         function navigateToPage(pageUrl) {
             window.location.href = pageUrl;
